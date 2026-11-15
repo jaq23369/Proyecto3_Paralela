@@ -1,0 +1,6 @@
+{
+  "tensorflow": "2.21.0",
+  "keras": "3.15.1",
+  "gpus_visible_to_tensorflow": 0,
+  "nota": "TensorFlow en Windows nativo no usa GPU (sin soporte desde TF 2.11)."
+}
