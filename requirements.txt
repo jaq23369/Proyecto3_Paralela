@@ -1,0 +1,17 @@
+# PyTorch con CUDA se instala aparte (ver README.md, sección "Entorno"):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+numpy
+pandas
+pillow
+scikit-learn
+matplotlib
+psutil
+nvidia-ml-py     # NVML: utilización de GPU (misma fuente que nvidia-smi)
+jupyter
+nbformat
+nbconvert
+nbclient
+ipykernel
+pytest
+# Opcional (kernel CUDA explícito con Numba, ver docs/04_diseno_algoritmo_paralelo.md):
+# numba-cuda
