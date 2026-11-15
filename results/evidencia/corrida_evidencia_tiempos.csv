@@ -1,0 +1,4 @@
+mode,model,phase,rep,seconds,tag,epochs,images,params,sec_per_epoch,test_acc,val_acc
+keras_original,-,preprocess,1,12.1586,pc1-evidencia,,9000,,,,
+keras_original,cnn2,train,1,35.7632,pc1-evidencia,1,,2246589,35.763,,0.0357
+keras_original,cnn2,infer,1,1.1444,pc1-evidencia,,1348,,,0.0371,
