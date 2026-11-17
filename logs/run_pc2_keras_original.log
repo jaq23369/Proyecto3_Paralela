@@ -1,0 +1,37 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794938696.129206   33576 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794938698.315684   33576 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:TensorFlow GPU support is not available on native Windows for TensorFlow >= 2.11. Even if CUDA/cuDNN are installed, GPU will not be used. Please use WSL2 or the TensorFlow-DirectML plugin.
+== Keras original (Lab 3) | TensorFlow 2.21.0 | GPUs visibles para TF: 0 | hilos intra-op: auto
+
+--- Repetición 1/3 ---
+   [rep 1] preprocess   -        36.17 s  {'images': 17400}
+WARNING:tensorflow:From C:\venvs\proyecto3_tf\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+   [rep 1] train        cnn1     19.37 s  {'epochs': 3, 'sec_per_epoch': 6.458, 'val_acc': 0.8218, 'params': 2120413}
+   [rep 1] infer        cnn1      0.38 s  {'test_acc': 0.8011, 'images': 2610}
+   [rep 1] train        cnn2    109.66 s  {'epochs': 3, 'sec_per_epoch': 36.553, 'val_acc': 0.228, 'params': 2246589}
+   [rep 1] infer        cnn2      1.54 s  {'test_acc': 0.2418, 'images': 2610}
+   [rep 1] train        mlp      12.93 s  {'epochs': 3, 'sec_per_epoch': 4.31, 'val_acc': 0.0705, 'params': 6430749}
+   [rep 1] infer        mlp       0.16 s  {'test_acc': 0.0824, 'images': 2610}
+
+--- Repetición 2/3 ---
+   [rep 2] preprocess   -        15.20 s  {'images': 17400}
+   [rep 2] train        cnn1     21.34 s  {'epochs': 3, 'sec_per_epoch': 7.113, 'val_acc': 0.8218, 'params': 2120413}
+   [rep 2] infer        cnn1      0.41 s  {'test_acc': 0.8011, 'images': 2610}
+   [rep 2] train        cnn2    111.07 s  {'epochs': 3, 'sec_per_epoch': 37.024, 'val_acc': 0.228, 'params': 2246589}
+   [rep 2] infer        cnn2      1.59 s  {'test_acc': 0.2418, 'images': 2610}
+   [rep 2] train        mlp      13.51 s  {'epochs': 3, 'sec_per_epoch': 4.502, 'val_acc': 0.0705, 'params': 6430749}
+   [rep 2] infer        mlp       0.17 s  {'test_acc': 0.0824, 'images': 2610}
+
+--- Repetición 3/3 ---
+   [rep 3] preprocess   -        14.88 s  {'images': 17400}
+   [rep 3] train        cnn1     21.37 s  {'epochs': 3, 'sec_per_epoch': 7.124, 'val_acc': 0.8218, 'params': 2120413}
+   [rep 3] infer        cnn1      0.43 s  {'test_acc': 0.8011, 'images': 2610}
+   [rep 3] train        cnn2    112.03 s  {'epochs': 3, 'sec_per_epoch': 37.344, 'val_acc': 0.228, 'params': 2246589}
+   [rep 3] infer        cnn2      1.51 s  {'test_acc': 0.2418, 'images': 2610}
+   [rep 3] train        mlp      12.91 s  {'epochs': 3, 'sec_per_epoch': 4.302, 'val_acc': 0.0705, 'params': 6430749}
+   [rep 3] infer        mlp       0.17 s  {'test_acc': 0.0824, 'images': 2610}
+
+Resultados guardados en D:\Tareas\Computacion Paralela\Proyecto 3\results\benchmark_pc2_keras_original.csv
