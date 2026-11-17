@@ -1,0 +1,9 @@
+fase,modelo,t_secuencial_s,t_paralelo_s,speedup
+preprocess,-,22.0827,3.9927,5.5308
+train,cnn1,20.6953,3.3373,6.2013
+train,cnn2,110.9205,8.6667,12.7984
+train,mlp,13.1143,1.1504,11.3994
+infer,cnn1,0.4076,0.063,6.4659
+infer,cnn2,1.549,0.1838,8.4278
+infer,mlp,0.1675,0.0041,41.1885
+total,-,168.9369,17.6985,9.5453
