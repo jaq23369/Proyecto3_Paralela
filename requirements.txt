@@ -13,5 +13,7 @@ nbconvert
 nbclient
 ipykernel
 pytest
-# Opcional (kernel CUDA explícito con Numba, ver docs/04_diseno_algoritmo_paralelo.md):
-# numba-cuda
+# Kernel CUDA explícito con Numba (paralelo_cuda/kernel_adam_numba.py). Requiere NumPy < 2.4: numba-cuda 0.30
+# usa np.row_stack, que NumPy 2.4+ eliminó. Ver paralelo_cuda/README.md.
+numba-cuda[cu12]
+numpy<2.4

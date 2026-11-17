@@ -19,10 +19,24 @@ dataset [ASL Alphabet](https://www.kaggle.com/datasets/grassknoted/asl-alphabet)
 | 2 | Medición del tiempo de ejecución secuencial | [`docs/02`](docs/02_medicion_secuencial.md) · `secuencial/` | Completado |
 | 3 | Oportunidades de paralelización | [`docs/03`](docs/03_oportunidades_paralelizacion.md) | Completado |
 | 4 | Diseño del algoritmo paralelo (con diagramas) | [`docs/04`](docs/04_diseno_algoritmo_paralelo.md) · `docs/diagramas/` | Completado |
-| 5 | Implementación con CUDA Python y mediciones | `paralelo_cuda/` (base funcional) | Pendiente |
-| 6 | Análisis y conclusiones | `docs/06_analisis_y_conclusiones.md` | Pendiente |
+| 5 | Implementación con CUDA Python y mediciones | `paralelo_cuda/` · kernel Numba en `paralelo_cuda/kernel_adam_numba.py` | Completado |
+| 6 | Análisis y conclusiones | [`docs/06`](docs/06_analisis_y_conclusiones.md) | Completado |
 
-Notebook de los pasos 1 a 4: [`notebooks/secuencial_y_diseno.ipynb`](notebooks/secuencial_y_diseno.ipynb).
+Notebooks: pasos 1 a 4 en [`notebooks/secuencial_y_diseno.ipynb`](notebooks/secuencial_y_diseno.ipynb); pasos 5 y 6 (código
+original y versión CUDA, demostración en vivo, mediciones y análisis) en
+[`notebooks/pasos_5_y_6_cuda.ipynb`](notebooks/pasos_5_y_6_cuda.ipynb).
+
+## Resultado de los pasos 5 y 6 (secuencial vs. CUDA, medidos en el mismo equipo: i5-12400 + RTX 4060 Ti)
+
+Tiempos medios de 3 repeticiones, 3 épocas, 17,400 imágenes (detalle y salvedades en [`docs/06`](docs/06_analisis_y_conclusiones.md)):
+
+| Fase | Secuencial (Keras, CPU) | Paralelo (CPU multinúcleo + GPU CUDA) | Speedup |
+|---|---:|---:|---:|
+| Preparar las imágenes | 22.1 s | 4.0 s | 5.5× |
+| Entrenar CNN #2 | 110.9 s | 8.7 s | 12.8× |
+| **Total del pipeline** | **168.9 s** | **17.7 s** | **9.55×** |
+
+La evidencia de ejecución (capturas del Administrador de Tareas y `nvidia-smi`) está en [`evidencia/`](evidencia/).
 
 ## Resultado del paso 2 (solución secuencial del Lab 3; equipo de medición: i7-10750H)
 
@@ -46,8 +60,9 @@ Esto orienta el diseño: el entrenamiento es casi todo el tiempo, y preparar las
 ├── preparacion_datos/   Fase A (CPU): decodificar JPG → 64×64 → normalizar. Versión secuencial y paralela.
 ├── paralelo_cuda/       Versión NUEVA: la red en la GPU con CUDA (PyTorch).                       [Pasos 5-6]
 ├── comparacion/         Tablas y gráficos secuencial vs. paralelo.
-├── notebooks/           Notebook de los pasos 1-4.
-├── results/  logs/      Mediciones, gráficos, logs de uso de CPU y capturas de pantalla (results/evidencia/).
+├── notebooks/           Notebooks de los pasos 1-4 y de los pasos 5-6.
+├── results/  logs/      Mediciones, gráficos y logs de uso de CPU/GPU.
+├── evidencia/           Capturas de pantalla (Administrador de Tareas y nvidia-smi) de las ejecuciones de pc2.
 ├── tests/               Comprueban que paralelo == secuencial y que las redes tienen los parámetros del Lab 3.
 ├── extras/              Opcionales, no requeridos por el enunciado.
 ├── comun/               Rutas, hiperparámetros del Lab 3 y monitor de recursos (compartido).
