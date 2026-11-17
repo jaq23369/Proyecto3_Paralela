@@ -1,0 +1,14 @@
+{
+  "cpu": "12th Gen Intel(R) Core(TM) i5-12400",
+  "cpu_physical_cores": 6,
+  "cpu_logical_cores": 12,
+  "ram_gb": 31.7,
+  "python": "3.12.4",
+  "torch": "2.11.0+cu128",
+  "cuda_runtime": "12.8",
+  "os": "Windows-11-10.0.26200-SP0",
+  "gpu": "NVIDIA GeForce RTX 4060 Ti",
+  "gpu_vram_gb": 8.0,
+  "gpu_sm_count": 34,
+  "gpu_compute_capability": "8.9"
+}

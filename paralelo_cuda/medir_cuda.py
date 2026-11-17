@@ -47,12 +47,19 @@ def parse_args() -> argparse.Namespace:
     ap.add_argument("--models", nargs="+", default=["cnn1", "cnn2", "mlp"], choices=["cnn1", "cnn2", "mlp"])
     ap.add_argument("--limit", type=int, default=None, help="usar solo N imágenes al azar (pruebas rápidas)")
     ap.add_argument("--amp", action="store_true", help="precisión mixta FP16 en GPU (variante opcional)")
+    ap.add_argument("--adam", choices=["torch", "numba"], default="torch",
+                    help="paso de Adam: torch.optim (oficial) o kernel CUDA propio de Numba (variante; usa otro --tag)")
     ap.add_argument("--no-monitor", action="store_true", help="no registrar el log de recursos")
     return ap.parse_args()
 
 
 if __name__ == "__main__":
     args = parse_args()
+    if args.adam == "numba":
+        # nvJitLink 12.9 debe cargarse ANTES que torch (ver kernel_adam_numba.py)
+        from cuda.bindings import nvjitlink
+
+        nvjitlink.version()
     from paralelo_cuda.medicion import run  # import pesado (torch) solo en el proceso padre
 
     run(args)

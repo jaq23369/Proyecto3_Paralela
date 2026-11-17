@@ -143,7 +143,7 @@ def run(args) -> None:
                 m = build_model(name, **config.MODEL_SPECS[name]["kwargs"]).to(device)
                 xw = torch.rand(256, 3, 64, 64, device=device)
                 yw = torch.randint(0, config.NUM_CLASSES, (256,), device=device)
-                fit(m, xw, yw, xw[:64], yw[:64], lr=1e-3, max_epochs=1, amp=args.amp, verbose=False)
+                fit(m, xw, yw, xw[:64], yw[:64], lr=1e-3, max_epochs=1, amp=args.amp, verbose=False, adam=args.adam)
             sync(device)
             record(0, "cuda_warmup", "all", time.perf_counter() - t0)
 
@@ -186,7 +186,7 @@ def run(args) -> None:
 
                 mark(f"train_{name}_r{rep}")
                 result = fit(model, x_tr, y_tr, x_va, y_va, lr=spec["lr"], max_epochs=args.epochs,
-                             patience=None, amp=args.amp, verbose=False)
+                             patience=None, amp=args.amp, verbose=False, adam=args.adam)
                 record(rep, "train", name, result.total_seconds, epochs=result.epochs_run,
                        sec_per_epoch=round(float(np.mean(result.epoch_seconds)), 3),
                        val_acc=round(result.best_val_acc, 4), params=count_parameters(model))

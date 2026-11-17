@@ -92,6 +92,7 @@ def fit(
     seed: int = RANDOM_SEED,
     amp: bool = False,
     verbose: bool = True,
+    adam: str = "torch",
 ) -> FitResult:
     """Entrena con Adam + entropía cruzada.
 
@@ -101,7 +102,15 @@ def fit(
     """
     device = x_train.device
     model.to(device)
-    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+    if adam == "numba":
+        # Paso de Adam con el kernel CUDA propio (un hilo por parámetro). Variante opcional: ver kernel_adam_numba.py.
+        if amp:
+            raise ValueError("--adam numba no es compatible con --amp (GradScaler necesita torch.optim)")
+        from paralelo_cuda.kernel_adam_numba import AdamNumba
+
+        optimizer = AdamNumba(model.parameters(), lr=lr)
+    else:
+        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
     criterion = nn.CrossEntropyLoss()
     use_amp = amp and device.type == "cuda"
     scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
