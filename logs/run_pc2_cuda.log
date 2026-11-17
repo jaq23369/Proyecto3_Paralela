@@ -1,0 +1,35 @@
+== Benchmark | tag=pc2 mode=cuda device=cuda threads=12 reps=3 epochs=3 imágenes=17400
+   calentando caché de archivos ...
+   [rep 0] cuda_warmup      all       5.04 s  
+
+--- Repetición 1/3 ---
+   [rep 1] preprocess       -         3.54 s  {'images': 17400}
+   [rep 1] h2d_transfer     -         0.27 s  {'megabytes': 816}
+   [rep 1] train            cnn1      5.34 s  {'epochs': 3, 'sec_per_epoch': 1.778, 'val_acc': 0.8042, 'params': 2120413}
+   [rep 1] infer            cnn1      0.06 s  {'test_acc': 0.7904, 'images': 2610}
+   [rep 1] train            cnn2     11.74 s  {'epochs': 3, 'sec_per_epoch': 3.912, 'val_acc': 0.4199, 'params': 2246589}
+   [rep 1] infer            cnn2      0.18 s  {'test_acc': 0.4054, 'images': 2610}
+   [rep 1] train            mlp       1.19 s  {'epochs': 3, 'sec_per_epoch': 0.396, 'val_acc': 0.1364, 'params': 6430749}
+   [rep 1] infer            mlp       0.00 s  {'test_acc': 0.133, 'images': 2610}
+
+--- Repetición 2/3 ---
+   [rep 2] preprocess       -         4.40 s  {'images': 17400}
+   [rep 2] h2d_transfer     -         0.27 s  {'megabytes': 816}
+   [rep 2] train            cnn1      2.34 s  {'epochs': 3, 'sec_per_epoch': 0.78, 'val_acc': 0.767, 'params': 2120413}
+   [rep 2] infer            cnn1      0.06 s  {'test_acc': 0.7552, 'images': 2610}
+   [rep 2] train            cnn2      7.15 s  {'epochs': 3, 'sec_per_epoch': 2.383, 'val_acc': 0.4019, 'params': 2246589}
+   [rep 2] infer            cnn2      0.19 s  {'test_acc': 0.3743, 'images': 2610}
+   [rep 2] train            mlp       1.14 s  {'epochs': 3, 'sec_per_epoch': 0.381, 'val_acc': 0.1364, 'params': 6430749}
+   [rep 2] infer            mlp       0.00 s  {'test_acc': 0.133, 'images': 2610}
+
+--- Repetición 3/3 ---
+   [rep 3] preprocess       -         4.04 s  {'images': 17400}
+   [rep 3] h2d_transfer     -         0.36 s  {'megabytes': 816}
+   [rep 3] train            cnn1      2.34 s  {'epochs': 3, 'sec_per_epoch': 0.778, 'val_acc': 0.7889, 'params': 2120413}
+   [rep 3] infer            cnn1      0.06 s  {'test_acc': 0.7762, 'images': 2610}
+   [rep 3] train            cnn2      7.11 s  {'epochs': 3, 'sec_per_epoch': 2.372, 'val_acc': 0.4188, 'params': 2246589}
+   [rep 3] infer            cnn2      0.18 s  {'test_acc': 0.39, 'images': 2610}
+   [rep 3] train            mlp       1.12 s  {'epochs': 3, 'sec_per_epoch': 0.374, 'val_acc': 0.1364, 'params': 6430749}
+   [rep 3] infer            mlp       0.00 s  {'test_acc': 0.133, 'images': 2610}
+
+Resultados guardados en D:\Tareas\Computacion Paralela\Proyecto 3\results\benchmark_pc2_cuda.csv
